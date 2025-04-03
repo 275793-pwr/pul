@@ -90,10 +90,7 @@ set_property ip_output_repo c:/Users/mati/Documents/vivado/project_1/project_1.c
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_vhdl -library xil_defaultlib {
-  C:/Users/mati/Documents/vivado/project_1/project_1.srcs/sources_1/new/debouncer.vhd
-  C:/Users/mati/Documents/vivado/project_1/project_1.srcs/sources_1/new/main.vhd
-}
+read_vhdl -library xil_defaultlib C:/Users/mati/Documents/vivado/project_1/project_1.srcs/sources_1/new/main.vhd
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
