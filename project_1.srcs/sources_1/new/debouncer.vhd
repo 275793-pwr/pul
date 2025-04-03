@@ -35,7 +35,7 @@ begin
             end if;
             
             if (state = "11") then
-                if button_in = '0' then
+                if delay > 100000000 then
                     next_state <= "00";
                 else
                     next_state <= "11";
