@@ -1,0 +1,662 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Thu Mar 20 17:07:03 2025
+| Host         : TEMP-MATI running 64-bit major release  (build 9200)
+| Command      : report_timing_summary -max_paths 10 -report_unconstrained -file main_timing_summary_routed.rpt -pb main_timing_summary_routed.pb -rpx main_timing_summary_routed.rpx -warn_on_violation
+| Design       : main
+| Device       : 7a35ti-csg324
+| Speed File   : -1L  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+  Merge Timing Exceptions                    :  Yes
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+------------------------------------------------------------------------------------------------
+| Report Methodology
+| ------------------
+------------------------------------------------------------------------------------------------
+
+Rule       Severity          Description                  Violations  
+---------  ----------------  ---------------------------  ----------  
+TIMING-17  Critical Warning  Non-clocked sequential cell  42          
+
+Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock (42)
+2. checking constant_clock (0)
+3. checking pulse_width_clock (0)
+4. checking unconstrained_internal_endpoints (79)
+5. checking no_input_delay (1)
+6. checking no_output_delay (2)
+7. checking multiple_clock (0)
+8. checking generated_clocks (0)
+9. checking loops (0)
+10. checking partial_input_delay (0)
+11. checking partial_output_delay (0)
+12. checking latch_loops (0)
+
+1. checking no_clock (42)
+-------------------------
+ There are 42 register/latch pins with no clock driven by root clock pin: CLOCK (HIGH)
+
+
+2. checking constant_clock (0)
+------------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock (0)
+---------------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints (79)
+-------------------------------------------------
+ There are 79 pins that are not constrained for maximum delay. (HIGH)
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay (1)
+------------------------------
+ There is 1 input port with no input delay specified. (HIGH)
+
+ There are 0 input ports with no input delay but user has a false path constraint.
+
+
+6. checking no_output_delay (2)
+-------------------------------
+ There are 2 ports with no output delay specified. (HIGH)
+
+ There are 0 ports with no output delay but user has a false path constraint
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock (0)
+------------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks (0)
+--------------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops (0)
+---------------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay (0)
+------------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay (0)
+-------------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops (0)
+----------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+        inf        0.000                      0                   81          inf        0.000                      0                   81           NA           NA                      NA                    NA  
+
+
+There are no user specified timing constraints.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| User Ignored Path Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+
+
+------------------------------------------------------------------------------------------------
+| Unconstrained Path Table
+| ------------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+(none)                                    
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  
+
+Max Delay            81 Endpoints
+Min Delay            81 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 BUTTON[0]
+                            (input port)
+  Destination:            button_debouncer/next_state_reg[0]/S
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.621ns  (logic 1.591ns (20.875%)  route 6.030ns (79.125%))
+  Logic Levels:           2  (IBUF=1 LUT3=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    D9                                                0.000     0.000 r  BUTTON[0] (IN)
+                         net (fo=0)                   0.000     0.000    BUTTON[0]
+    D9                   IBUF (Prop_ibuf_I_O)         1.467     1.467 r  BUTTON_IBUF[0]_inst/O
+                         net (fo=3, routed)           5.643     7.109    button_debouncer/next_state_reg[1]_0[0]
+    SLICE_X65Y53         LUT3 (Prop_lut3_I1_O)        0.124     7.233 r  button_debouncer/next_state[1]_i_1/O
+                         net (fo=2, routed)           0.387     7.621    button_debouncer/p_0_in
+    SLICE_X65Y53         FDSE                                         r  button_debouncer/next_state_reg[0]/S
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 BUTTON[0]
+                            (input port)
+  Destination:            button_debouncer/next_state_reg[1]/R
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.621ns  (logic 1.591ns (20.875%)  route 6.030ns (79.125%))
+  Logic Levels:           2  (IBUF=1 LUT3=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    D9                                                0.000     0.000 r  BUTTON[0] (IN)
+                         net (fo=0)                   0.000     0.000    BUTTON[0]
+    D9                   IBUF (Prop_ibuf_I_O)         1.467     1.467 r  BUTTON_IBUF[0]_inst/O
+                         net (fo=3, routed)           5.643     7.109    button_debouncer/next_state_reg[1]_0[0]
+    SLICE_X65Y53         LUT3 (Prop_lut3_I1_O)        0.124     7.233 r  button_debouncer/next_state[1]_i_1/O
+                         net (fo=2, routed)           0.387     7.621    button_debouncer/p_0_in
+    SLICE_X65Y53         FDRE                                         r  button_debouncer/next_state_reg[1]/R
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 BUTTON[0]
+                            (input port)
+  Destination:            button_debouncer/next_state_reg[0]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.866ns  (logic 1.467ns (21.363%)  route 5.399ns (78.637%))
+  Logic Levels:           1  (IBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    D9                                                0.000     0.000 r  BUTTON[0] (IN)
+                         net (fo=0)                   0.000     0.000    BUTTON[0]
+    D9                   IBUF (Prop_ibuf_I_O)         1.467     1.467 r  BUTTON_IBUF[0]_inst/O
+                         net (fo=3, routed)           5.399     6.866    button_debouncer/next_state_reg[1]_0[0]
+    SLICE_X65Y53         FDSE                                         r  button_debouncer/next_state_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 BUTTON[0]
+                            (input port)
+  Destination:            button_debouncer/next_state_reg[1]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.677ns  (logic 1.467ns (21.969%)  route 5.210ns (78.031%))
+  Logic Levels:           1  (IBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    D9                                                0.000     0.000 r  BUTTON[0] (IN)
+                         net (fo=0)                   0.000     0.000    BUTTON[0]
+    D9                   IBUF (Prop_ibuf_I_O)         1.467     1.467 r  BUTTON_IBUF[0]_inst/O
+                         net (fo=3, routed)           5.210     6.677    button_debouncer/next_state_reg[1]_0[0]
+    SLICE_X65Y53         FDRE                                         r  button_debouncer/next_state_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 LED_reg[0]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            LED[0]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.786ns  (logic 4.122ns (71.244%)  route 1.664ns (28.756%))
+  Logic Levels:           2  (FDRE=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X65Y51         FDRE                         0.000     0.000 r  LED_reg[0]/C
+    SLICE_X65Y51         FDRE (Prop_fdre_C_Q)         0.422     0.422 r  LED_reg[0]/Q
+                         net (fo=1, routed)           1.664     2.086    LED_OBUF[0]
+    H5                   OBUF (Prop_obuf_I_O)         3.700     5.786 r  LED_OBUF[0]_inst/O
+                         net (fo=0)                   0.000     5.786    LED[0]
+    H5                                                                r  LED[0] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 LED_reg[1]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            LED[1]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.633ns  (logic 3.966ns (70.412%)  route 1.667ns (29.588%))
+  Logic Levels:           2  (FDRE=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X65Y51         FDRE                         0.000     0.000 r  LED_reg[1]/C
+    SLICE_X65Y51         FDRE (Prop_fdre_C_Q)         0.459     0.459 r  LED_reg[1]/Q
+                         net (fo=1, routed)           1.667     2.126    LED_OBUF[1]
+    J5                   OBUF (Prop_obuf_I_O)         3.507     5.633 r  LED_OBUF[1]_inst/O
+                         net (fo=0)                   0.000     5.633    LED[1]
+    J5                                                                r  LED[1] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/delay_reg[11]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            button_debouncer/next_state_reg[0]/CE
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        3.782ns  (logic 0.890ns (23.535%)  route 2.892ns (76.465%))
+  Logic Levels:           4  (FDRE=1 LUT4=1 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y49         FDRE                         0.000     0.000 r  button_debouncer/delay_reg[11]/C
+    SLICE_X64Y49         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  button_debouncer/delay_reg[11]/Q
+                         net (fo=2, routed)           0.981     1.499    button_debouncer/delay_reg[11]
+    SLICE_X65Y50         LUT4 (Prop_lut4_I2_O)        0.124     1.623 r  button_debouncer/next_state[1]_i_11/O
+                         net (fo=1, routed)           0.938     2.561    button_debouncer/next_state[1]_i_11_n_0
+    SLICE_X65Y49         LUT6 (Prop_lut6_I5_O)        0.124     2.685 f  button_debouncer/next_state[1]_i_4/O
+                         net (fo=1, routed)           0.641     3.326    button_debouncer/next_state[1]_i_4_n_0
+    SLICE_X65Y51         LUT6 (Prop_lut6_I3_O)        0.124     3.450 r  button_debouncer/next_state[1]_i_2/O
+                         net (fo=2, routed)           0.332     3.782    button_debouncer/p_1_in
+    SLICE_X65Y53         FDSE                                         r  button_debouncer/next_state_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/delay_reg[11]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            button_debouncer/next_state_reg[1]/CE
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        3.782ns  (logic 0.890ns (23.535%)  route 2.892ns (76.465%))
+  Logic Levels:           4  (FDRE=1 LUT4=1 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y49         FDRE                         0.000     0.000 r  button_debouncer/delay_reg[11]/C
+    SLICE_X64Y49         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  button_debouncer/delay_reg[11]/Q
+                         net (fo=2, routed)           0.981     1.499    button_debouncer/delay_reg[11]
+    SLICE_X65Y50         LUT4 (Prop_lut4_I2_O)        0.124     1.623 r  button_debouncer/next_state[1]_i_11/O
+                         net (fo=1, routed)           0.938     2.561    button_debouncer/next_state[1]_i_11_n_0
+    SLICE_X65Y49         LUT6 (Prop_lut6_I5_O)        0.124     2.685 f  button_debouncer/next_state[1]_i_4/O
+                         net (fo=1, routed)           0.641     3.326    button_debouncer/next_state[1]_i_4_n_0
+    SLICE_X65Y51         LUT6 (Prop_lut6_I3_O)        0.124     3.450 r  button_debouncer/next_state[1]_i_2/O
+                         net (fo=2, routed)           0.332     3.782    button_debouncer/p_1_in
+    SLICE_X65Y53         FDRE                                         r  button_debouncer/next_state_reg[1]/CE
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/delay_reg[1]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            button_debouncer/delay_reg[32]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        2.854ns  (logic 2.213ns (77.540%)  route 0.641ns (22.460%))
+  Logic Levels:           10  (CARRY4=9 FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y47         FDRE                         0.000     0.000 r  button_debouncer/delay_reg[1]/C
+    SLICE_X64Y47         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  button_debouncer/delay_reg[1]/Q
+                         net (fo=2, routed)           0.640     1.158    button_debouncer/delay_reg[1]
+    SLICE_X64Y47         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.657     1.815 r  button_debouncer/delay_reg[0]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     1.815    button_debouncer/delay_reg[0]_i_2_n_0
+    SLICE_X64Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     1.932 r  button_debouncer/delay_reg[4]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.932    button_debouncer/delay_reg[4]_i_1_n_0
+    SLICE_X64Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     2.049 r  button_debouncer/delay_reg[8]_i_1/CO[3]
+                         net (fo=1, routed)           0.001     2.050    button_debouncer/delay_reg[8]_i_1_n_0
+    SLICE_X64Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     2.167 r  button_debouncer/delay_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     2.167    button_debouncer/delay_reg[12]_i_1_n_0
+    SLICE_X64Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     2.284 r  button_debouncer/delay_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     2.284    button_debouncer/delay_reg[16]_i_1_n_0
+    SLICE_X64Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     2.401 r  button_debouncer/delay_reg[20]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     2.401    button_debouncer/delay_reg[20]_i_1_n_0
+    SLICE_X64Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     2.518 r  button_debouncer/delay_reg[24]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     2.518    button_debouncer/delay_reg[24]_i_1_n_0
+    SLICE_X64Y54         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     2.635 r  button_debouncer/delay_reg[28]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     2.635    button_debouncer/delay_reg[28]_i_1_n_0
+    SLICE_X64Y55         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     2.854 r  button_debouncer/delay_reg[32]_i_1/O[0]
+                         net (fo=1, routed)           0.000     2.854    button_debouncer/delay_reg[32]_i_1_n_7
+    SLICE_X64Y55         FDRE                                         r  button_debouncer/delay_reg[32]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/delay_reg[1]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            button_debouncer/delay_reg[29]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        2.841ns  (logic 2.200ns (77.437%)  route 0.641ns (22.563%))
+  Logic Levels:           9  (CARRY4=8 FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y47         FDRE                         0.000     0.000 r  button_debouncer/delay_reg[1]/C
+    SLICE_X64Y47         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  button_debouncer/delay_reg[1]/Q
+                         net (fo=2, routed)           0.640     1.158    button_debouncer/delay_reg[1]
+    SLICE_X64Y47         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.657     1.815 r  button_debouncer/delay_reg[0]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     1.815    button_debouncer/delay_reg[0]_i_2_n_0
+    SLICE_X64Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     1.932 r  button_debouncer/delay_reg[4]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.932    button_debouncer/delay_reg[4]_i_1_n_0
+    SLICE_X64Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     2.049 r  button_debouncer/delay_reg[8]_i_1/CO[3]
+                         net (fo=1, routed)           0.001     2.050    button_debouncer/delay_reg[8]_i_1_n_0
+    SLICE_X64Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     2.167 r  button_debouncer/delay_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     2.167    button_debouncer/delay_reg[12]_i_1_n_0
+    SLICE_X64Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     2.284 r  button_debouncer/delay_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     2.284    button_debouncer/delay_reg[16]_i_1_n_0
+    SLICE_X64Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     2.401 r  button_debouncer/delay_reg[20]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     2.401    button_debouncer/delay_reg[20]_i_1_n_0
+    SLICE_X64Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     2.518 r  button_debouncer/delay_reg[24]_i_1/CO[3]
+                         net (fo=1, routed)           0.000     2.518    button_debouncer/delay_reg[24]_i_1_n_0
+    SLICE_X64Y54         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323     2.841 r  button_debouncer/delay_reg[28]_i_1/O[1]
+                         net (fo=1, routed)           0.000     2.841    button_debouncer/delay_reg[28]_i_1_n_6
+    SLICE_X64Y54         FDRE                                         r  button_debouncer/delay_reg[29]/D
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 led_state_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            LED_reg[0]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.213ns  (logic 0.146ns (68.544%)  route 0.067ns (31.456%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X65Y51         FDRE                         0.000     0.000 r  led_state_reg/C
+    SLICE_X65Y51         FDRE (Prop_fdre_C_Q)         0.146     0.146 r  led_state_reg/Q
+                         net (fo=2, routed)           0.067     0.213    led_state
+    SLICE_X65Y51         FDRE                                         r  LED_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/hold_out_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            LED_reg[1]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.253ns  (logic 0.141ns (55.730%)  route 0.112ns (44.270%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X65Y52         FDRE                         0.000     0.000 r  button_debouncer/hold_out_reg/C
+    SLICE_X65Y52         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  button_debouncer/hold_out_reg/Q
+                         net (fo=1, routed)           0.112     0.253    hold_out
+    SLICE_X65Y51         FDRE                                         r  LED_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/next_state_reg[0]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            button_debouncer/state_reg[0]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.265ns  (logic 0.141ns (53.180%)  route 0.124ns (46.820%))
+  Logic Levels:           1  (FDSE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X65Y53         FDSE                         0.000     0.000 r  button_debouncer/next_state_reg[0]/C
+    SLICE_X65Y53         FDSE (Prop_fdse_C_Q)         0.141     0.141 r  button_debouncer/next_state_reg[0]/Q
+                         net (fo=3, routed)           0.124     0.265    button_debouncer/next_state_reg_n_0_[0]
+    SLICE_X65Y52         FDRE                                         r  button_debouncer/state_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/next_state_reg[1]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            button_debouncer/state_reg[1]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.307ns  (logic 0.141ns (45.882%)  route 0.166ns (54.118%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X65Y53         FDRE                         0.000     0.000 r  button_debouncer/next_state_reg[1]/C
+    SLICE_X65Y53         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  button_debouncer/next_state_reg[1]/Q
+                         net (fo=3, routed)           0.166     0.307    button_debouncer/next_state_reg_n_0_[1]
+    SLICE_X65Y52         FDRE                                         r  button_debouncer/state_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/pulse_out_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            led_state_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.336ns  (logic 0.227ns (67.603%)  route 0.109ns (32.397%))
+  Logic Levels:           2  (FDRE=1 LUT2=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X65Y52         FDRE                         0.000     0.000 r  button_debouncer/pulse_out_reg/C
+    SLICE_X65Y52         FDRE (Prop_fdre_C_Q)         0.128     0.128 r  button_debouncer/pulse_out_reg/Q
+                         net (fo=1, routed)           0.109     0.237    button_debouncer/pulse_out
+    SLICE_X65Y51         LUT2 (Prop_lut2_I0_O)        0.099     0.336 r  button_debouncer/led_state_i_1/O
+                         net (fo=1, routed)           0.000     0.336    button_debouncer_n_1
+    SLICE_X65Y51         FDRE                                         r  led_state_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/next_state_reg[0]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            button_debouncer/pulse_out_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.346ns  (logic 0.189ns (54.570%)  route 0.157ns (45.430%))
+  Logic Levels:           2  (FDSE=1 LUT4=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X65Y53         FDSE                         0.000     0.000 r  button_debouncer/next_state_reg[0]/C
+    SLICE_X65Y53         FDSE (Prop_fdse_C_Q)         0.141     0.141 r  button_debouncer/next_state_reg[0]/Q
+                         net (fo=3, routed)           0.157     0.298    button_debouncer/next_state_reg_n_0_[0]
+    SLICE_X65Y52         LUT4 (Prop_lut4_I0_O)        0.048     0.346 r  button_debouncer/pulse_out_i_1/O
+                         net (fo=1, routed)           0.000     0.346    button_debouncer/pulse_out0
+    SLICE_X65Y52         FDRE                                         r  button_debouncer/pulse_out_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/delay_reg[10]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            button_debouncer/delay_reg[10]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.399ns  (logic 0.274ns (68.589%)  route 0.125ns (31.411%))
+  Logic Levels:           2  (CARRY4=1 FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y49         FDRE                         0.000     0.000 r  button_debouncer/delay_reg[10]/C
+    SLICE_X64Y49         FDRE (Prop_fdre_C_Q)         0.164     0.164 r  button_debouncer/delay_reg[10]/Q
+                         net (fo=2, routed)           0.125     0.289    button_debouncer/delay_reg[10]
+    SLICE_X64Y49         CARRY4 (Prop_carry4_S[2]_O[2])
+                                                      0.110     0.399 r  button_debouncer/delay_reg[8]_i_1/O[2]
+                         net (fo=1, routed)           0.000     0.399    button_debouncer/delay_reg[8]_i_1_n_5
+    SLICE_X64Y49         FDRE                                         r  button_debouncer/delay_reg[10]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/delay_reg[14]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            button_debouncer/delay_reg[14]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.399ns  (logic 0.274ns (68.589%)  route 0.125ns (31.411%))
+  Logic Levels:           2  (CARRY4=1 FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y50         FDRE                         0.000     0.000 r  button_debouncer/delay_reg[14]/C
+    SLICE_X64Y50         FDRE (Prop_fdre_C_Q)         0.164     0.164 r  button_debouncer/delay_reg[14]/Q
+                         net (fo=2, routed)           0.125     0.289    button_debouncer/delay_reg[14]
+    SLICE_X64Y50         CARRY4 (Prop_carry4_S[2]_O[2])
+                                                      0.110     0.399 r  button_debouncer/delay_reg[12]_i_1/O[2]
+                         net (fo=1, routed)           0.000     0.399    button_debouncer/delay_reg[12]_i_1_n_5
+    SLICE_X64Y50         FDRE                                         r  button_debouncer/delay_reg[14]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/delay_reg[2]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            button_debouncer/delay_reg[2]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.399ns  (logic 0.274ns (68.589%)  route 0.125ns (31.411%))
+  Logic Levels:           2  (CARRY4=1 FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y47         FDRE                         0.000     0.000 r  button_debouncer/delay_reg[2]/C
+    SLICE_X64Y47         FDRE (Prop_fdre_C_Q)         0.164     0.164 r  button_debouncer/delay_reg[2]/Q
+                         net (fo=2, routed)           0.125     0.289    button_debouncer/delay_reg[2]
+    SLICE_X64Y47         CARRY4 (Prop_carry4_S[2]_O[2])
+                                                      0.110     0.399 r  button_debouncer/delay_reg[0]_i_2/O[2]
+                         net (fo=1, routed)           0.000     0.399    button_debouncer/delay_reg[0]_i_2_n_5
+    SLICE_X64Y47         FDRE                                         r  button_debouncer/delay_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 button_debouncer/delay_reg[6]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            button_debouncer/delay_reg[6]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.399ns  (logic 0.274ns (68.589%)  route 0.125ns (31.411%))
+  Logic Levels:           2  (CARRY4=1 FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y48         FDRE                         0.000     0.000 r  button_debouncer/delay_reg[6]/C
+    SLICE_X64Y48         FDRE (Prop_fdre_C_Q)         0.164     0.164 r  button_debouncer/delay_reg[6]/Q
+                         net (fo=2, routed)           0.125     0.289    button_debouncer/delay_reg[6]
+    SLICE_X64Y48         CARRY4 (Prop_carry4_S[2]_O[2])
+                                                      0.110     0.399 r  button_debouncer/delay_reg[4]_i_1/O[2]
+                         net (fo=1, routed)           0.000     0.399    button_debouncer/delay_reg[4]_i_1_n_5
+    SLICE_X64Y48         FDRE                                         r  button_debouncer/delay_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
