@@ -180,3 +180,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports SPI_MOSI]
 set_property PACKAGE_PIN N17 [get_ports SPI_MOSI]
 set_property PACKAGE_PIN P18 [get_ports SPI_SCK]
 set_property PACKAGE_PIN P17 [get_ports SPI_SS]
+
+set_property PACKAGE_PIN R18 [get_ports LDAC]
+set_property IOSTANDARD LVCMOS33 [get_ports LDAC]

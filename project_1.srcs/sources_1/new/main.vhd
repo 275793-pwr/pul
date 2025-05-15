@@ -18,71 +18,77 @@
 -- https://wzn.pwr.edu.pl/fcp/4GBUKOQtTKlQhbx08SlkTWgJQX2o8DAoHNiwFE1xVT31BG1gnBVcoFW8SBDRKHg/96/public/pul/pul_arty_shield.txt
 -- https://wzn.pwr.edu.pl/materialy-dydaktyczne/pul/pul_ie
 ----------------------------------------------------------------------------------
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.numeric_std.ALL;
 
+ENTITY main IS
+    PORT (
+        BUTTON : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+        Clock100MHz : IN STD_LOGIC;
+        LED : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+        SPI_SCK : OUT STD_LOGIC;
+        SPI_MOSI : OUT STD_LOGIC;
+        SPI_SS : OUT STD_LOGIC;
+        LDAC : OUT STD_LOGIC
+    );
+END main;
 
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.numeric_std.all;
+ARCHITECTURE Behavioral OF main IS
 
-entity main is
-    Port (  
-        BUTTON : in STD_LOGIC_vector(3 downto 0);
-        Clock100MHz: in std_logic;
-        LED : out STD_LOGIC_vector(3 downto 0);
-        SPI_SCK : out std_logic;
-        SPI_MOSI : out std_logic;
-        SPI_SS : out std_logic;
-        LDAC : out std_logic
+    TYPE state_type IS (IDLE, SEND_REF, SEND_POWER, RUN, END_COMM);
+    SIGNAL current_state, next_state : state_type := IDLE;
+
+    SIGNAL led_state : STD_LOGIC := '0';
+
+    COMPONENT debouncer IS
+        PORT (
+            clk : IN STD_LOGIC; -- Clock input
+            button_in : IN STD_LOGIC; -- Raw button input
+            pulse_out : OUT STD_LOGIC; -- Single pulse output
+            hold_out : OUT STD_LOGIC
         );
-end main;
+    END COMPONENT;
 
-architecture Behavioral of main is
+    COMPONENT spi_master IS
+        PORT (
+            clk : IN STD_LOGIC;
+            start : IN STD_LOGIC;
+            data_in : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+            sck : OUT STD_LOGIC;
+            mosi : OUT STD_LOGIC;
+            ss : OUT STD_LOGIC;
+            busy : OUT STD_LOGIC
+        );
+    END COMPONENT;
 
-signal led_state : std_logic := '0';
+    SIGNAL btn0_pulse : STD_LOGIC;
+    SIGNAL btn0_hold : STD_LOGIC;
+    SIGNAL spi_busy : STD_LOGIC;
+    SIGNAL spi_data_out : STD_LOGIC_VECTOR(23 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL spi_start_pulse : STD_LOGIC := '0'; -- New signal for SPI start pulse
 
-component debouncer is
-    port (
-        clk           : in std_logic;         -- Clock input
-        button_in     : in std_logic;         -- Raw button input
-        pulse_out     : out std_logic;        -- Single pulse output
-        hold_out      : out std_logic
-    );
-end component;
+    SIGNAL ref_command : STD_LOGIC_VECTOR(23 DOWNTO 0) := x"204000"; -- REF command: Internal 2.5V
+    SIGNAL power_command : STD_LOGIC_VECTOR(23 DOWNTO 0) := x"400000"; -- POWER command: Normal operation
+    SIGNAL voltage_command : STD_LOGIC_VECTOR(23 DOWNTO 0) := x"123456"; -- POWER command: Normal operation
 
-component spi_master is
-    Port (
-        clk : in std_logic;
-        start : in std_logic;
-        data_in : in std_logic_vector(23 downto 0);
-        sck : out std_logic;
-        mosi : out std_logic;
-        ss : out std_logic;
-        busy : out std_logic
-    );
-end component;
-
-signal btn0_pulse : std_logic;
-signal btn0_hold : std_logic;
-signal spi_busy : std_logic;
-signal spi_data_out : std_logic_vector(23 downto 0) := (others => '0');
-
-begin
+BEGIN
 
     -- Toggle LED on btn0_pulse
-    process(Clock100MHz)
-    begin
-        if rising_edge(Clock100MHz) then
-            if btn0_pulse = '1' then
-                led_state <= not led_state;
-            end if;
-        end if;
-    end process;
+    PROCESS (Clock100MHz)
+    BEGIN
+        IF rising_edge(Clock100MHz) THEN
+            IF btn0_pulse = '1' THEN
+                led_state <= NOT led_state;
+            END IF;
+        END IF;
+    END PROCESS;
 
     LED(0) <= led_state;
 
     -- Instantiate debouncer for BUTTON(0)
     debouncer_inst : debouncer
-    port map (
+    PORT MAP(
         clk => Clock100MHz,
         button_in => BUTTON(0),
         pulse_out => btn0_pulse,
@@ -91,9 +97,9 @@ begin
 
     -- Instantiate SPI Master
     spi_master_inst : spi_master
-    Port map (
+    PORT MAP(
         clk => Clock100MHz,
-        start => btn0_pulse,
+        start => spi_start_pulse, -- Connect to the new pulse signal
         data_in => spi_data_out, -- Connect data to be transmitted
         sck => SPI_SCK,
         mosi => SPI_MOSI,
@@ -101,12 +107,55 @@ begin
         busy => spi_busy
     );
 
-    -- Example data to transmit (replace with actual data for MAX5705)
-    -- For MAX5705, the data format is typically 24 bits:
-    -- [Control Bits (4)] [DAC Data (16)] [Don't Care (4)]
-    -- Example: Write to DAC A (0011), Data = 0x1234 (0001 0010 0011 0100), Don't Care (0000)
-    -- Total 24 bits: 0011_0001_0010_0011_0100_0000
-    spi_data_out <= x"312340"; -- Example data: Write to DAC A with data 0x1234
+    -- LDAC control process
+    PROCESS (Clock100MHz)
+    BEGIN
+        IF rising_edge(Clock100MHz) THEN
+            IF current_state = IDLE THEN
+                LDAC <= '0';
+            ELSE
+                LDAC <= '1';
+            END IF;
+        END IF;
+    END PROCESS;
 
+    -- State machine to send configuration commands and data
+    PROCESS (Clock100MHz)
+    BEGIN
+        IF rising_edge(Clock100MHz) THEN
+            spi_start_pulse <= '0'; -- Default to low
 
-end Behavioral;
+            CASE current_state IS
+                WHEN IDLE =>
+                    IF btn0_pulse = '1' THEN
+                        next_state <= SEND_REF;
+                    END IF;
+                WHEN SEND_REF =>
+                    IF spi_busy = '0' THEN
+                        spi_data_out <= ref_command;
+                        spi_start_pulse <= '1'; -- Start REF command
+                        next_state <= SEND_POWER;
+                    END IF;
+                WHEN SEND_POWER =>
+                    IF spi_busy = '0' THEN
+                        spi_data_out <= power_command;
+                        spi_start_pulse <= '1'; -- Start POWER command
+                        next_state <= RUN;
+                    END IF;
+                WHEN RUN =>
+                    IF spi_busy = '0' THEN
+                        spi_data_out <= voltage_command;
+                        spi_start_pulse <= '1'; -- Start DAC data transmission
+                        next_state <= END_COMM;
+                    END IF;
+                WHEN END_COMM =>
+                    IF spi_busy = '0' THEN
+                        next_state <= IDLE;
+                    END IF;
+
+            END CASE;
+            current_state <= next_state;
+        END IF;
+    END PROCESS;
+
+END Behavioral;

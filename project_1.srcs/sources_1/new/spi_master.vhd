@@ -24,7 +24,7 @@ architecture Behavioral of spi_master is
     signal spi_ss_int : std_logic := '1';
     signal busy_int : std_logic := '0';
     signal data_buffer : std_logic_vector(23 downto 0) := (others => '0');
-    signal clk_div_counter : std_logic_vector(8 downto 0) := (others => '0');
+    signal clk_div_counter : integer range 0 to 255 := 0; -- Counter for clock division by 8
 
 begin
 
@@ -49,20 +49,20 @@ begin
                     end if;
                     spi_ss_int <= '1'; -- Ensure SS is high in IDLE
                     spi_sck_int <= '0'; -- Ensure SCK is low in IDLE
-                    clk_div_counter <= (others => '0');
+                    clk_div_counter <= 0;
 
                 when START_TX =>
                     spi_ss_int <= '0'; -- Assert SS low
                     spi_sck_int <= '0'; -- Start with SCK low
                     bit_count <= 0;
-                    clk_div_counter <= (others => '0');
+                    clk_div_counter <= 0;
                     next_state <= SEND_BIT;
 
                 when SEND_BIT =>
                     if bit_count < 24 then
                         if clk_div_counter = 255 then -- Toggle SCK every 8 clock cycles
                             spi_sck_int <= not spi_sck_int;
-                            clk_div_counter <= (others => '0');
+                            clk_div_counter <= 0;
                             if spi_sck_int = '0' then -- Data is valid on the rising edge of SCK
                                 spi_mosi_int <= data_buffer(23 - bit_count); -- Send MSB first
                             end if;
@@ -81,7 +81,7 @@ begin
                     spi_ss_int <= '1'; -- Deassert SS high
                     spi_sck_int <= '0'; -- Ensure SCK is low
                     busy_int <= '0';
-                    clk_div_counter <= (others => '0');
+                    clk_div_counter <= 0;
                     next_state <= IDLE;
 
             end case;
