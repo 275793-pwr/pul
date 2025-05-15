@@ -70,12 +70,8 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param checkpoint.writeSynthRtdsInDcp 1
 set_param chipscope.maxJobs 4
-set_param synth.incrementalSynthesisCache C:/Users/mati/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-12520-TEMP-MATI/incrSyn
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35ticsg324-1L
 
@@ -90,7 +86,11 @@ set_property ip_output_repo c:/Users/mati/Documents/vivado/project_1/project_1.c
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_vhdl -library xil_defaultlib C:/Users/mati/Documents/vivado/project_1/project_1.srcs/sources_1/new/main.vhd
+read_vhdl -library xil_defaultlib {
+  C:/Users/mati/Documents/vivado/project_1/project_1.srcs/sources_1/new/debouncer.vhd
+  C:/Users/mati/Documents/vivado/project_1/project_1.srcs/sources_1/new/spi_master.vhd
+  C:/Users/mati/Documents/vivado/project_1/project_1.srcs/sources_1/new/main.vhd
+}
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
