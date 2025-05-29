@@ -68,9 +68,9 @@ ARCHITECTURE Behavioral OF main IS
     SIGNAL spi_data_out : STD_LOGIC_VECTOR(23 DOWNTO 0) := (OTHERS => '0');
     SIGNAL spi_start_pulse : STD_LOGIC := '0'; -- New signal for SPI start pulse
 
-    SIGNAL ref_command : STD_LOGIC_VECTOR(23 DOWNTO 0) := x"204000"; -- REF command: Internal 2.5V
+    SIGNAL ref_command : STD_LOGIC_VECTOR(23 DOWNTO 0) := x"2D0000"; -- REF command: Internal 2.5V
     SIGNAL power_command : STD_LOGIC_VECTOR(23 DOWNTO 0) := x"400000"; -- POWER command: Normal operation
-    SIGNAL voltage_command : STD_LOGIC_VECTOR(23 DOWNTO 0) := x"123456"; -- POWER command: Normal operation
+    SIGNAL voltage_command : STD_LOGIC_VECTOR(23 DOWNTO 0) := x"8A8A8A"; -- Set Voltage
 
 BEGIN
 

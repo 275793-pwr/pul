@@ -1,91 +1,99 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.numeric_std.all;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.numeric_std.ALL;
 
-entity spi_master is
-    Port (
-        clk : in std_logic;
-        start : in std_logic;
-        data_in : in std_logic_vector(23 downto 0);
-        sck : out std_logic;
-        mosi : out std_logic;
-        ss : out std_logic;
-        busy : out std_logic
+ENTITY spi_master IS
+    PORT (
+        clk : IN STD_LOGIC;
+        start : IN STD_LOGIC;
+        data_in : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+        sck : OUT STD_LOGIC;
+        mosi : OUT STD_LOGIC;
+        ss : OUT STD_LOGIC;
+        busy : OUT STD_LOGIC
     );
-end spi_master;
+END spi_master;
 
-architecture Behavioral of spi_master is
+ARCHITECTURE Behavioral OF spi_master IS
 
-    type state_type is (IDLE, START_TX, SEND_BIT, END_TX);
-    signal current_state, next_state : state_type := IDLE;
-    signal bit_count : integer range 0 to 24 := 0;
-    signal spi_sck_int : std_logic := '0';
-    signal spi_mosi_int : std_logic := '0';
-    signal spi_ss_int : std_logic := '1';
-    signal busy_int : std_logic := '0';
-    signal data_buffer : std_logic_vector(23 downto 0) := (others => '0');
-    signal clk_div_counter : integer range 0 to 255 := 0; -- Counter for clock division by 8
+    TYPE state_type IS (IDLE, START_TX, SEND_BIT, END_TX);
+    SIGNAL current_state, next_state : state_type := IDLE;
+    SIGNAL bit_count : INTEGER RANGE 0 TO 24 := 0;
+    SIGNAL spi_sck_int : STD_LOGIC := '0';
+    SIGNAL spi_mosi_int : STD_LOGIC := '0';
+    SIGNAL spi_ss_int : STD_LOGIC := '1';
+    SIGNAL busy_int : STD_LOGIC := '0';
+    SIGNAL data_buffer : STD_LOGIC_VECTOR(23 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL clk_div_counter : INTEGER RANGE 0 TO 255000 := 0; -- Counter for clock division by 8
 
-begin
+BEGIN
 
     sck <= spi_sck_int;
     mosi <= spi_mosi_int;
     ss <= spi_ss_int;
     busy <= busy_int;
 
-    process(clk)
-    begin
-        if rising_edge(clk) then
+    PROCESS (clk)
+    BEGIN
+        IF rising_edge(clk) THEN
             current_state <= next_state;
-            case current_state is
-                when IDLE =>
-                    if start = '1' then
+            CASE current_state IS
+                WHEN IDLE =>
+                    IF start = '1' THEN
                         next_state <= START_TX;
                         data_buffer <= data_in;
                         busy_int <= '1';
-                    else
+                    ELSE
+                        clk_div_counter <= 0;
                         next_state <= IDLE;
                         busy_int <= '0';
-                    end if;
+                    END IF;
                     spi_ss_int <= '1'; -- Ensure SS is high in IDLE
                     spi_sck_int <= '0'; -- Ensure SCK is low in IDLE
                     clk_div_counter <= 0;
 
-                when START_TX =>
+                WHEN START_TX =>
                     spi_ss_int <= '0'; -- Assert SS low
                     spi_sck_int <= '0'; -- Start with SCK low
                     bit_count <= 0;
                     clk_div_counter <= 0;
                     next_state <= SEND_BIT;
 
-                when SEND_BIT =>
-                    if bit_count < 24 then
-                        if clk_div_counter = 255 then -- Toggle SCK every 8 clock cycles
-                            spi_sck_int <= not spi_sck_int;
-                            clk_div_counter <= 0;
-                            if spi_sck_int = '0' then -- Data is valid on the rising edge of SCK
+                WHEN SEND_BIT =>
+                    IF bit_count < 24 THEN
+
+                        IF clk_div_counter = 20 THEN -- Toggle SCK every 8 clock cycles
+                            -- spi_sck_int <= not spi_sck_int;
+                            IF spi_sck_int = '0' THEN -- Data is valid on the rising edge of SCK
                                 spi_mosi_int <= data_buffer(23 - bit_count); -- Send MSB first
-                            end if;
-                            if spi_sck_int = '1' then -- Data is sampled on the falling edge of SCK
+                            END IF;
+                            IF spi_sck_int = '1' THEN -- Data is sampled on the falling edge of SCK
                                 bit_count <= bit_count + 1;
-                            end if;
-                        end if;
+                            END IF;
+                        END IF;
+
+                        IF clk_div_counter = 250 THEN -- Toggle SCK every 8 clock cycles
+                            clk_div_counter <= 0;
+                            spi_sck_int <= NOT spi_sck_int;
+                        END IF;
                         clk_div_counter <= clk_div_counter + 1;
                         next_state <= SEND_BIT;
 
-                    else
+                    ELSE
                         next_state <= END_TX;
-                    end if;
+                        clk_div_counter <= 0;
+                    END IF;
 
-                when END_TX =>
+                WHEN END_TX =>
                     spi_ss_int <= '1'; -- Deassert SS high
                     spi_sck_int <= '0'; -- Ensure SCK is low
-                    busy_int <= '0';
-                    clk_div_counter <= 0;
-                    next_state <= IDLE;
+                    IF clk_div_counter = 250000 THEN
+                        next_state <= IDLE;
+                    END IF;
+                    clk_div_counter <= clk_div_counter + 1;
 
-            end case;
-        end if;
-    end process;
+            END CASE;
+        END IF;
+    END PROCESS;
 
-end Behavioral;
+END Behavioral;
