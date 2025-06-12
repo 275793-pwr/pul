@@ -1,15 +1,17 @@
+set_property -dict {PACKAGE_PIN E3 IOSTANDARD LVCMOS33} [get_ports Clock100MHz]
+set_property -dict {PACKAGE_PIN A8 IOSTANDARD LVCMOS33} [get_ports {SW[0]}]
+set_property -dict {PACKAGE_PIN C11 IOSTANDARD LVCMOS33} [get_ports {SW[1]}]
+set_property -dict {PACKAGE_PIN C10 IOSTANDARD LVCMOS33} [get_ports {SW[2]}]
+set_property -dict {PACKAGE_PIN A10 IOSTANDARD LVCMOS33} [get_ports {SW[3]}]
+set_property -dict {PACKAGE_PIN V15 IOSTANDARD LVCMOS33} [get_ports LCD_RS]
+set_property -dict {PACKAGE_PIN U16 IOSTANDARD LVCMOS33} [get_ports LCD_E]
 ## General XDC file for ARTY & PUL Shield v1.1 2020
 ## Based on XDC file provided by Digilent
 
 ## Clock signal
-set_property -dict {PACKAGE_PIN E3 IOSTANDARD LVCMOS33} [get_ports Clock100MHz]
 create_clock -period 10.000 -name sys_clk_pin -waveform {0.000 5.000} -add [get_ports Clock100MHz]
 
 ## LEDs
-set_property -dict {PACKAGE_PIN H5 IOSTANDARD LVCMOS33} [get_ports {LED[0]}]
-set_property -dict {PACKAGE_PIN J5 IOSTANDARD LVCMOS33} [get_ports {LED[1]}]
-set_property -dict {PACKAGE_PIN T9 IOSTANDARD LVCMOS33} [get_ports {LED[2]}]
-set_property -dict {PACKAGE_PIN T10 IOSTANDARD LVCMOS33} [get_ports {LED[3]}]
 
 ## RGB LEDs
 #set_property -dict { PACKAGE_PIN E1    IOSTANDARD LVCMOS33 } [get_ports { LED0_B }]; #IO_L18N_T2_35 Sch=LED0_b
@@ -26,16 +28,8 @@ set_property -dict {PACKAGE_PIN T10 IOSTANDARD LVCMOS33} [get_ports {LED[3]}]
 #set_property -dict { PACKAGE_PIN K1    IOSTANDARD LVCMOS33 } [get_ports { LED3_R }]; #IO_L23N_T3_35 Sch=LED3_r
 
 ## Switches
-set_property -dict {PACKAGE_PIN A8 IOSTANDARD LVCMOS33} [get_ports {SW[0]}]
-set_property -dict {PACKAGE_PIN C11 IOSTANDARD LVCMOS33} [get_ports {SW[1]}]
-set_property -dict {PACKAGE_PIN C10 IOSTANDARD LVCMOS33} [get_ports {SW[2]}]
-set_property -dict {PACKAGE_PIN A10 IOSTANDARD LVCMOS33} [get_ports {SW[3]}]
 
 ## Buttons
-set_property -dict { PACKAGE_PIN D9    IOSTANDARD LVCMOS33 } [get_ports { Button[0] }]; #IO_L6N_T0_VREF_16 Sch=btn[0]
-set_property -dict { PACKAGE_PIN C9    IOSTANDARD LVCMOS33 } [get_ports { Button[1] }]; #IO_L11P_T1_SRCC_16 Sch=btn[1]
-set_property -dict { PACKAGE_PIN B9    IOSTANDARD LVCMOS33 } [get_ports { Button[2] }]; #IO_L11N_T1_SRCC_16 Sch=btn[2]
-set_property -dict { PACKAGE_PIN B8    IOSTANDARD LVCMOS33 } [get_ports { Button[3] }]; #IO_L12P_T1_MRCC_16 Sch=btn[3]
 
 ## UART
 #set_property -dict { PACKAGE_PIN D10   IOSTANDARD LVCMOS33 } [get_ports { UART_TX }]; #IO_L19N_T3_VREF_16 Sch=uart_rxd_out
@@ -57,12 +51,6 @@ set_property -dict { PACKAGE_PIN B8    IOSTANDARD LVCMOS33 } [get_ports { Button
 ## 7 Segment LED Display
 
 ## LCD Display
-set_property -dict {PACKAGE_PIN V15 IOSTANDARD LVCMOS33} [get_ports LCD_RS]
-set_property -dict {PACKAGE_PIN U16 IOSTANDARD LVCMOS33} [get_ports LCD_E]
-set_property -dict {PACKAGE_PIN V16 IOSTANDARD LVCMOS33} [get_ports LCD_DB4]
-set_property -dict {PACKAGE_PIN P14 IOSTANDARD LVCMOS33} [get_ports LCD_DB5]
-set_property -dict {PACKAGE_PIN M13 IOSTANDARD LVCMOS33} [get_ports LCD_DB6]
-set_property -dict {PACKAGE_PIN T11 IOSTANDARD LVCMOS33} [get_ports LCD_DB7]
 
 ### Audio I2S Codec
 #set_property -dict { PACKAGE_PIN R10   IOSTANDARD LVCMOS33 } [get_ports { I2S_DIN }]; #IO_25_14 		 			Sch=ck_io[29]
@@ -188,11 +176,31 @@ set_property PACKAGE_PIN P17 [get_ports SPI_SS]
 set_property PACKAGE_PIN R18 [get_ports LDAC]
 set_property IOSTANDARD LVCMOS33 [get_ports LDAC]
 
-set_property PACKAGE_PIN B8 [get_ports {BUTTON[3]}]
-set_property PACKAGE_PIN B9 [get_ports {BUTTON[2]}]
-set_property PACKAGE_PIN C9 [get_ports {BUTTON[1]}]
 set_property PACKAGE_PIN D9 [get_ports {BUTTON[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {BUTTON[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {BUTTON[1]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {BUTTON[2]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {BUTTON[3]}]
+
+set_property PACKAGE_PIN V16 [get_ports {LCD_DATA[0]}]
+set_property PACKAGE_PIN P14 [get_ports {LCD_DATA[1]}]
+set_property PACKAGE_PIN M13 [get_ports {LCD_DATA[2]}]
+set_property PACKAGE_PIN T11 [get_ports {LCD_DATA[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {LCD_DATA[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {LCD_DATA[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {LCD_DATA[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {LCD_DATA[0]}]
+
+set_property IOSTANDARD LVCMOS33 [get_ports {DEBUG[7]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {DEBUG[6]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {DEBUG[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {DEBUG[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {DEBUG[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {DEBUG[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {DEBUG[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {DEBUG[0]}]
+set_property PACKAGE_PIN F1 [get_ports {DEBUG[0]}]
+set_property PACKAGE_PIN C1 [get_ports {DEBUG[1]}]
+set_property PACKAGE_PIN G1 [get_ports {DEBUG[2]}]
+set_property PACKAGE_PIN T15 [get_ports {DEBUG[3]}]
+set_property PACKAGE_PIN R15 [get_ports {DEBUG[4]}]
+set_property PACKAGE_PIN T16 [get_ports {DEBUG[5]}]
+set_property PACKAGE_PIN P15 [get_ports {DEBUG[6]}]
+set_property PACKAGE_PIN R16 [get_ports {DEBUG[7]}]
