@@ -75,6 +75,7 @@ OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
   C:/data/pul/project_1.srcs/sources_1/new/debouncer.vhd
   C:/data/pul/project_1.srcs/sources_1/new/lcd.vhd
+  C:/data/pul/project_1.srcs/sources_1/new/us.vhd
   C:/data/pul/project_1.srcs/sources_1/new/main.vhd
 }
 OPTRACE "Adding files" END { }

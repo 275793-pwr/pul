@@ -256,7 +256,7 @@ begin
     -------------------------------------------------------------------------
     --  Znak do wy�wietlenia zale�ny od indeksu char_no
     -------------------------------------------------------------------------
-    process(lcd_clk, reset)
+    process(lcd_clk, reset, state)
     begin
         if reset = '1' then
             znak <= "01001000"; -- H
@@ -278,6 +278,11 @@ begin
                         when 2 => znak <= "01010010"; -- r
                         when 3 => znak <= "01001100"; -- l
                         when 4 => znak <= "01000100"; -- d
+                        
+                        when 8 => znak <= setki;
+                        when 9 => znak <= dziesiatki;
+                        when 10 => znak <= jednosci;
+
                         when others  => znak <= "00100000"; -- space
                     end case;
                 end if ;
