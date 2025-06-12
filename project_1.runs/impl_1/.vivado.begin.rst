@@ -83,3 +83,8 @@
     <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="10468" HostCore="16" HostMemory="033965748224">
     </Process>
 </ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="6628" HostCore="16" HostMemory="033965748224">
+    </Process>
+</ProcessHandle>

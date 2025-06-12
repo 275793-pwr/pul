@@ -22,7 +22,7 @@ architecture Behavioral of lcd is
     TYPE STATE_TYPE IS (
         CONFIGURATION1, CONFIGURATION2, CONFIGURATION3, CONFIGURATION4,
         FUNC_SET, DISPLAY_OFF, DISPLAY_CLEAR, DISPLAY_ON, MODE_SET,
-        SET_CURSOR_FIRST_LINE, WRITE_CHAR, RETURN_HOME,
+        SET_CURSOR_FIRST_LINE, SET_CURSOR_SECOND_LINE, WRITE_CHAR, RETURN_HOME,
         SEND_UPPER, TOGGLE_E, SEND_LOWER, TOGGLE_E2, HOLD
     );
 
@@ -38,6 +38,7 @@ architecture Behavioral of lcd is
     signal reset_cnt      : unsigned(3 downto 0) := (others => '0');
     signal znak           : STD_LOGIC_VECTOR (7 DOWNTO 0) := (others => '0');
     signal ready          : boolean := true;
+    signal line_no        : integer range 1 to 2 := 1;
 
     -------------------------------------------------------------------------
     --  Zmienne do przetwarzania liczby na znaki ASCII
@@ -103,6 +104,7 @@ begin
             LCD_E <= '1';
             LCD_RS <= '0';
             init_done <= '0';
+            line_no <= 1;
             char_no <= (others => '0');
             update_request <= '0';
         elsif rising_edge(lcd_clk) then
@@ -179,27 +181,37 @@ begin
 
                     when SET_CURSOR_FIRST_LINE =>
                         LCD_RS <= '0';
-                        LCD_DATA_VALUE <= "10000000";
+                        LCD_DATA_VALUE <= "10000000"; -- Command for first line
+                        next_command <= WRITE_CHAR;
+                        state <= SEND_UPPER;
+
+                    when SET_CURSOR_SECOND_LINE =>
+                        LCD_RS <= '0';
+                        LCD_DATA_VALUE <= "11000000"; -- Command for second line
                         next_command <= WRITE_CHAR;
                         state <= SEND_UPPER;
 
                     when WRITE_CHAR =>
-                    if char_no = to_unsigned(16, 6) then
-                        state <= HOLD;
-                        next_command <= HOLD;
-                        init_done <= '1';
+                        LCD_RS <= '1';
+                        LCD_DATA_VALUE <= DOUT;
+                        char_no <= char_no + 1;
+                        state <= SEND_UPPER;
+                        if char_no = 15 and line_no = 1 then -- After writing 16 characters on the first line
+                            next_command <= SET_CURSOR_SECOND_LINE;
+                            line_no <= 2;
+                            char_no <= (others => '0'); -- Reset char_no for the second line
+                        elsif char_no = 15 and line_no = 2 then -- After writing 16 characters on the second line
+                            state <= HOLD;
+                            next_command <= HOLD;
+                            init_done <= '1';
                         else
-                            LCD_RS <= '1';
-                            LCD_DATA_VALUE <= DOUT;
-                            char_no <= char_no + 1;
-                            state <= SEND_UPPER;
                             next_command <= WRITE_CHAR;
                         end if;
 
                     when RETURN_HOME =>
                         LCD_RS <= '0';
-                        LCD_DATA_VALUE <= "10000000";
-                        next_command <= WRITE_CHAR;
+                        LCD_DATA_VALUE <= "00000010"; -- Return home command
+                        next_command <= SET_CURSOR_FIRST_LINE;
                         state <= SEND_UPPER;
 
                     when SEND_UPPER =>
@@ -247,17 +259,28 @@ begin
     process(lcd_clk, reset)
     begin
         if reset = '1' then
-            znak <= "01000010"; -- D
+            znak <= "01001000"; -- H
         elsif rising_edge(lcd_clk) then
             if state = WRITE_CHAR then
-                case char_no is
-                    when "000000" => znak <= "01000100"; -- D
-                    when "000001" => znak <= "01000011"; -- Y
-                    when "000010" => znak <= "01000010"; -- S
-                    when "000011" => znak <= "01000001"; -- T
-                    when "000100" => znak <= "01000001"; -- A
-                    when others  => znak <= "01000100"; -- puste
-                end case;
+                if line_no = 1 then
+                    case to_integer(char_no) is
+                        when 0 => znak <= "01001000"; -- H
+                        when 1 => znak <= "01000101"; -- e
+                        when 2 => znak <= "01001100"; -- l
+                        when 3 => znak <= "01001100"; -- l
+                        when 4 => znak <= "01001111"; -- o
+                        when others  => znak <= "00100000"; -- space
+                    end case;
+                else
+                    case to_integer(char_no) is
+                        when 0 => znak <= "01010111"; -- W
+                        when 1 => znak <= "01001111"; -- o
+                        when 2 => znak <= "01010010"; -- r
+                        when 3 => znak <= "01001100"; -- l
+                        when 4 => znak <= "01000100"; -- d
+                        when others  => znak <= "00100000"; -- space
+                    end case;
+                end if ;
             end if;
         end if;
     end process;
