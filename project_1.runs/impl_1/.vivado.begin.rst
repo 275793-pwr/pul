@@ -1,125 +1,75 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="3676" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="9053" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="7024" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="40420" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="14844" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="65403" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="8204" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="92283" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="14516" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="116825" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="8144" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="141699" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="13428" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="168031" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="1576" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="193125" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="14316" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="217065" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="10824" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="241976" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="6424" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="268243" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="6476" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="269378" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="13988" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="298902" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="13596" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="327270" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="6396" HostCore="16" HostMemory="033965748224">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="6676" HostCore="16" HostMemory="033965748224">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="10468" HostCore="16" HostMemory="033965748224">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="6628" HostCore="16" HostMemory="033965748224">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="10936" HostCore="16" HostMemory="033965748224">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="6156" HostCore="16" HostMemory="033965748224">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="1944" HostCore="16" HostMemory="033965748224">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="9180" HostCore="16" HostMemory="033965748224">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="16240" HostCore="16" HostMemory="033965748224">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="15464" HostCore="16" HostMemory="033965748224">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="mati" Host="TEMP-MATI" Pid="9388" HostCore="16" HostMemory="033965748224">
+    <Process Command="vivado" Owner="mati" Host="temp-mati" Pid="354864" HostCore="16" HostMemory="32478832">
     </Process>
 </ProcessHandle>

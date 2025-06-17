@@ -1,7 +1,7 @@
 -------------------------------------
-| Tool Version : Vivado v.2024.2
-| Date         : Thu Jun 12 15:30:13 2025
-| Host         : TEMP-MATI
+| Tool Version : Vivado v.2025.1
+| Date         : Tue Jun 17 13:42:53 2025
+| Host         : temp-mati
 | Design       : design_1
 | Device       : xc7a35ti-csg324-1L-I-
 -------------------------------------

@@ -1,5 +1,5 @@
 namespace eval ::optrace {
-  variable script "C:/data/pul/project_1.runs/impl_1/main.tcl"
+  variable script "/home/mati/Documents/pul/project_1.runs/impl_1/main.tcl"
   variable category "vivado_impl"
 }
 
@@ -105,6 +105,7 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 4
+  set_param general.usePosixSpawnForFork 1
   set_param xicom.use_bs_reader 1
   set_param runs.launchOptions { -jobs 8  }
 OPTRACE "create in-memory project" START { }
@@ -113,15 +114,15 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/data/pul/project_1.cache/wt [current_project]
-  set_property parent.project_path C:/data/pul/project_1.xpr [current_project]
-  set_property ip_output_repo C:/data/pul/project_1.cache/ip [current_project]
+  set_property webtalk.parent_dir /home/mati/Documents/pul/project_1.cache/wt [current_project]
+  set_property parent.project_path /home/mati/Documents/pul/project_1.xpr [current_project]
+  set_property ip_output_repo /home/mati/Documents/pul/project_1.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/data/pul/project_1.runs/synth_1/main.dcp
+  add_files -quiet /home/mati/Documents/pul/project_1.runs/synth_1/main.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/data/pul/project_1.srcs/constrs_1/new/pinout.xdc
+  read_xdc /home/mati/Documents/pul/project_1.srcs/constrs_1/new/pinout.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }
@@ -190,7 +191,9 @@ OPTRACE "implement_debug_core" START { }
 OPTRACE "implement_debug_core" END { }
   } 
 OPTRACE "place_design" START { }
+  set_param project.isImplRun true
   place_design 
+  set_param project.isImplRun false
 OPTRACE "place_design" END { }
 OPTRACE "read constraints: place_design_post" START { }
 OPTRACE "read constraints: place_design_post" END { }
